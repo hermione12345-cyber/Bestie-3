@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>System Access 💻</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: black;
+            color: #00ffcc;
+            font-family: monospace;
+            overflow: hidden;
+        }
+
+        #terminal {
+            padding: 20px;
+            white-space: pre-line;
+            font-size: 18px;
+        }
+
+        .btn {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: transparent;
+            border: 1px solid #00ffcc;
+            color: #00ffcc;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #00ffcc;
+            color: black;
+        }
+
+        .center {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="terminal"></div>
+
+<div class="center">
+    <button class="btn" id="continueBtn" onclick="startStory()">ACCESS MEMORY ⚡</button>
+</div>
+
+<div id="story" class="hidden center">
+    <h1>Hey You 💙</h1>
+    <p id="storyText"></p>
+
+    <button class="btn" onclick="finalMessage()">Decrypt Final Message 🔐</button>
+
+    <p id="final"></p>
+</div>
+
+<script>
+let terminal = document.getElementById("terminal");
+
+let lines = [
+"Initializing system...",
+"Loading modules...",
+"Accessing bestie_data.sh ...",
+"Access granted ✅",
+"",
+"user@bestie:~$ whoami",
+"> The most important person in my life 💙",
+"",
+"user@bestie:~$ ls memories",
+"> gaming_sessions.log",
+"> linux_talks.txt",
+"> random_laughs.mp4",
+"",
+"user@bestie:~$ cat feelings.txt",
+"> You matter more than you think 💙",
+"",
+"user@bestie:~$ sudo give_hug",
+"> Permission granted 🤝"
+];
+
+let i = 0;
+
+function typeLine() {
+    if (i < lines.length) {
+        terminal.innerHTML += lines[i] + "\n";
+        i++;
+        setTimeout(typeLine, 800);
+    } else {
+        document.getElementById("continueBtn").style.display = "inline-block";
+    }
+}
+
+typeLine();
+
+function startStory() {
+    document.getElementById("terminal").style.display = "none";
+    document.getElementById("continueBtn").style.display = "none";
+    document.getElementById("story").classList.remove("hidden");
+
+    let text = "From random Linux talks... to late night conversations...\nYou became more than just a friend.\nYou became my comfort system 💙";
+
+    let index = 0;
+    function typing() {
+        if (index < text.length) {
+            document.getElementById("storyText").innerHTML += text.charAt(index);
+            index++;
+            setTimeout(typing, 50);
+        }
+    }
+    typing();
+
+    document.querySelector("#story button").style.display = "inline-block";
+}
+
+function finalMessage() {
+    document.getElementById("final").innerHTML =
+    "Even in a world full of chaos... I'd still choose you 🖤";
+}
+</script>
+
+</body>
+</html>
